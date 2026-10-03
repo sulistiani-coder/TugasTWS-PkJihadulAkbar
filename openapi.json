@@ -1,0 +1,205 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/destinasi": {
+      "get": {
+        "operationId": "DestinasiController_findAll",
+        "parameters": [
+          {
+            "name": "kategori",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Daftar destinasi berhasil diambil"
+          }
+        },
+        "summary": "Menampilkan daftar destinasi, dapat difilter berdasarkan kategori",
+        "tags": [
+          "Destinasi"
+        ]
+      },
+      "post": {
+        "operationId": "DestinasiController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDestinasiDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Destinasi berhasil dibuat"
+          },
+          "400": {
+            "description": "Data tidak valid"
+          }
+        },
+        "summary": "Menambahkan destinasi baru",
+        "tags": [
+          "Destinasi"
+        ]
+      }
+    },
+    "/destinasi/{id}": {
+      "get": {
+        "operationId": "DestinasiController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Menampilkan detail satu destinasi",
+        "tags": [
+          "Destinasi"
+        ]
+      },
+      "patch": {
+        "operationId": "DestinasiController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDestinasiDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Mengubah sebagian data destinasi",
+        "tags": [
+          "Destinasi"
+        ]
+      },
+      "delete": {
+        "operationId": "DestinasiController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "summary": "Menghapus destinasi",
+        "tags": [
+          "Destinasi"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "WisataKu API",
+    "description": "API untuk platform informasi dan reservasi destinasi wisata",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateDestinasiDto": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string",
+            "example": "Pantai Kuta Mandalika"
+          },
+          "kategori": {
+            "type": "string",
+            "example": "Pantai"
+          },
+          "hargaTiket": {
+            "type": "number",
+            "example": 15000
+          }
+        },
+        "required": [
+          "nama",
+          "kategori",
+          "hargaTiket"
+        ]
+      },
+      "UpdateDestinasiDto": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string",
+            "example": "Pantai Kuta Mandalika"
+          },
+          "kategori": {
+            "type": "string",
+            "example": "Pantai"
+          },
+          "hargaTiket": {
+            "type": "number",
+            "example": 15000
+          }
+        }
+      }
+    }
+  }
+}
