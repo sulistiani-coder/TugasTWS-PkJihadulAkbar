@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateUlasanInput {
+  destinasiId: Int!
+  komentar: String!
+  rating: Int!
+}
+
 type Destinasi {
   fasilitas: [Fasilitas!]
   hargaTiket: Float!
@@ -15,6 +21,10 @@ type Destinasi {
 type Fasilitas {
   id: Int!
   namaFasilitas: String!
+}
+
+type Mutation {
+  tambahUlasan(input: CreateUlasanInput!): Ulasan!
 }
 
 type Query {

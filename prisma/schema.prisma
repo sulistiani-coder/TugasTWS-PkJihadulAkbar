@@ -34,3 +34,11 @@ model Fasilitas {
   destinasiId   Int
   namaFasilitas String
 }
+
+model User {
+  id           Int    @id @default(autoincrement())
+  nama         String
+  email        String @unique
+  passwordHash String
+  role         String @default("wisatawan")
+}
